@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact | BEE Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="logo">
+    <img src="assets/images/logo.png" alt="BEE Network Logo" class="logo-img">
+    <span>BEE Network</span>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-section">
+
+  <!-- CONTACT FORM -->
+  <form id="contact-form" class="contact-form">
+    <h2>Contact Us</h2>
+
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      required
+    />
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      required
+    />
+
+    <textarea
+      name="message"
+      rows="6"
+      placeholder="Your Message"
+      required
+    ></textarea>
+
+    <button type="submit" class="btn">
+      Send Message
+    </button>
+
+    <p id="form-status" class="form-status"></p>
+  </form>
+
+  <!-- CONTACT INFO -->
+  <div class="contact-info">
+    <h3>Get in Touch</h3>
+    <p>
+      Email: beenee24x7@gmail.com <br />
+      Phone: +91 7840965034
+    </p>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/beenee24x7/"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 BEE Network. All Rights Reserved.</p>
+</footer>
+
+<!-- ================= EMAILJS ================= -->
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- Using the latest version for better reliability -->
+
+<script>
+  (function () {
+    emailjs.init("XZHKa6kcms03-nJQM");  // ← Paste your Public Key here
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const status = document.getElementById("form-status");
+    status.textContent = "Sending...";
+    status.style.color = "#f5c400";
+
+    emailjs.sendForm(
+      "service_aeucgko",          // ← Your Service ID (already correct!)
+      "template_falwxgp",    // ← Paste your Template ID here
+      this
+    )
+    .then(
+      function () {
+        status.textContent = "Message sent successfully 🐝";
+        status.style.color = "green";
+        document.getElementById("contact-form").reset();
+      },
+      function (error) {
+        status.textContent = "Failed to send message ❌ Please try again.";
+        status.style.color = "red";
+        console.error("EmailJS error:", error);
+      }
+    );
+  });
+</script>
+
+</body>
+</html>
